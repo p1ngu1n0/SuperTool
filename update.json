@@ -1,9 +1,1 @@
-{
-    "pishing":{
-        "shellphish":["https://github.com/thelinuxchoice/shellphish.git", "19 páginas de phishing de redes sociales", ["cd shellphish", "bash shellphish.sh"], ["bash shellphish.sh"]],
-        "blackeye":["https://github.com/thelinuxchoice/blackeye.git","La herramienta de phishing más completa, con 32 plantillas +1 personalizables", ["cd blackeye", "bash blackeye.sh"], ["bash blackeye.sh"]]
-    },
-    "keyloggers":{
-        "evilreg":["https://github.com/thelinuxchoice/shellphish.git", "19 páginas de phishing de redes sociales", ["cd shellphish", "bash shellphish.sh"], ["bash shellphish.sh"]]
-    }
-}
+{}
