@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import os
 import cmd
 import git
@@ -19,6 +16,11 @@ if not os.path.exists("update.json"):
     with open("update.json", "w+") as f:
         f.write("{}")
         print("***Archivo 'update.json' creado !")
+
+if not os.path.exists("mirror.txt"):
+    with open("mirror.txt", "w+") as f:
+        f.write("")
+        print("***Archivo 'mirror.txt' creado !")
 
 class SuperTool(cmd.Cmd):
     def __init__(self):
@@ -124,15 +126,16 @@ class SuperTool(cmd.Cmd):
     
     def do_update(self, _):
         "***Actualiza las tools"
-        resultado = dict()
-        for x in open("mirror.txt", "r").readlines():
+        data = dict()
+        
+        for x in [x.rstrip() for x in open("mirror.txt", "r").readlines()]:
             print(x)
-            resultado.update(json.loads((requests.get(x+".json").content).decode()))
+            data.update(requests.get(x).json())
 
-        bar = FillingCirclesBar('Actualizando', max=len(resultado))
-        for i in range(len(resultado)):
+        bar = FillingCirclesBar('Actualizando', max=len(str(data)))
+        for i in range(len(str(data))):
             with open('update.json', 'w') as upt:
-                json.dump(resultado, upt)
+                json.dump(data, upt)
                 bar.next()
         bar.finish()
         self.requiere = json.loads(open("update.json", "r").read())
@@ -152,7 +155,7 @@ class SuperTool(cmd.Cmd):
             try:
                 subprocess.call((''.join(tmp[_][3])).split(), shell=True)
             except KeyError as s:
-                print("***No se puede ejecutar 'comandos' motivo: {}".format(_, s))
+                print("***No se puede ejecutar 'comandos' motivo: {} puede que no sea compatible con tu sistema".format(_, s))
         else:
             for x in [name for name in os.listdir("modules") if os.path.isdir(os.path.join(self.ruta, self.modules, name))]:
                 print(x)

@@ -1,12 +1,12 @@
 attrs==19.3.0
 certifi==2020.4.5.1
 chardet==3.0.4
-cmd2==1.0.2
 colorama==0.4.3
 gitdb==4.0.5
 GitPython==3.1.2
 idna==2.9
 progress==1.5
+pycurl==7.43.0.5
 pyperclip==1.8.0
 pyreadline==2.1
 requests==2.23.0
